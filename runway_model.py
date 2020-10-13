@@ -8,13 +8,16 @@ inputs= {
 @runway.command('generate',
                 inputs=inputs,
                outputs={ 'image': runway.image })
-def generate(inputs):
+def generate(model , inputs):
   network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
   seed=inputs['z']
   trunc=0.5
-  return generate_images(network_pkl, seed, trunc)
+  output_image =  generate_images(network_pkl, seed, trunc)
+  return {
+            'image': output_image
+        }
 
 
 
 if __name__ == '__main__':
-    runway.run(port=5232)
+    runway.run(port=8080)
