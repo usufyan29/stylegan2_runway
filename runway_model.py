@@ -7,15 +7,15 @@ input= {
 }
 
 setup_options = {
-    'truncation': number(min=5, max=100, step=1, default=0.5)
+    'truncation': number(min=5, max=100, step=1, default=5)
 }
 @runway.setup(options=setup_options)
 def setup(opts):
     return opts
 
 
-@runway.command(name='generate_image',inputs=input,outputs={ 'image': image })
-def generate_image(model , args):
+@runway.command(name='generate_',inputs=input,outputs={ 'image': image })
+def generate_(k,model , args):
     network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
     seed=args['z']
     trunc=0.5
