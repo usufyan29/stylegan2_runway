@@ -6,6 +6,7 @@ inputs= {
 }
 
 @runway.command('generate',
+                inputs=inputs,
                outputs={ 'image': runway.image })
 def generate(inputs):
   network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
