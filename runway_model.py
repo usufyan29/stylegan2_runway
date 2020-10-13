@@ -1,27 +1,26 @@
 import runway
+from runway.data_types import number, image
 import random
 from generate_for_runway import *
 input= {
-    "z": runway.number(random.randint(1,1000))
+    "z": number(random.randint(1,1000))
 }
 
-
-@runway.setup(options={'model_size': runway.text()})
-def setup( opts):
+setup_options = {
+    'truncation': number(min=5, max=100, step=1, default=0.5)
+}
+@runway.setup(options=setup_options)
+def setup(opts):
     return opts
 
 
-@runway.command(name='generate',
-                inputs=input,
-               outputs={ 'image': runway.image })
-def generate(opts , inputs):
-  network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
-  seed=inputs['z']
-  trunc=0.5
-  output_image =  generate_images(network_pkl, seed, trunc)
-  return {
-            'image': output_image
-        }
+@runway.command(name='generate_image',inputs=input,outputs={ 'image': image })
+def generate_image(model , args):
+    network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
+    seed=args['z']
+    trunc=0.5
+    output_image =  generate_images(network_pkl, seed, trunc)
+    return {'image': output_image}
 
 
 
