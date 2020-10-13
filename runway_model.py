@@ -25,4 +25,4 @@ def generate_image(model , args):
 
 
 if __name__ == '__main__':
-    runway.run(port=8080)
+    runway.run(port=8090)
