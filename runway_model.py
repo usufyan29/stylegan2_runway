@@ -1,14 +1,14 @@
 import runway
 import random
 from generate_for_runway import *
-inputs= {
+input= {
     "z": runway.number(random.randint(1,1000))
 }
 
-@runway.command('generate',
-                inputs=inputs,
+@runway.command(name='generate',
+                inputs=input,
                outputs={ 'image': runway.image })
-def generate(model , inputs):
+def generate(self , inputs):
   network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
   seed=inputs['z']
   trunc=0.5
