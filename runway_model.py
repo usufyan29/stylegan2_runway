@@ -5,10 +5,16 @@ input= {
     "z": runway.number(random.randint(1,1000))
 }
 
+
+@runway.setup(options={'model_size': runway.text()})
+def setup( opts):
+    return opts
+
+
 @runway.command(name='generate',
                 inputs=input,
                outputs={ 'image': runway.image })
-def generate(self , inputs):
+def generate(opts , inputs):
   network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
   seed=inputs['z']
   trunc=0.5
