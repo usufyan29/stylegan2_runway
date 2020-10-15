@@ -1,6 +1,6 @@
 entrypoint: python runway_model.py
 python: 3.6
-cuda: 10.1
+cuda: 9.2
 spec:
   cpu: False
   gpu: True
