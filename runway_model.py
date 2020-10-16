@@ -16,7 +16,10 @@ def setup(opts):
 
 @runway.command(name='generate',inputs=input,outputs={ 'image': image })
 def generate_(model , args):
-    _run_cmd('export PATH=$PATH:/usr/local/cuda/bin')
+    _run_cmd('export CUDA_HOME=/usr/local/cuda')
+    _run_cmd('export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64')
+    _run_cmd('export PATH=$PATH:$CUDA_HOME/bin')
+    
     network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
     seed=args['z']
     trunc=0.5
