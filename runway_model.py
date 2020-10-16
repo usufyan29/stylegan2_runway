@@ -14,7 +14,7 @@ def setup(opts):
     return opts
 
 
-@runway.command(name='generate_',inputs=input,outputs={ 'image': image })
+@runway.command(name='generate',inputs=input,outputs={ 'image': image })
 def generate_(model , args):
     network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
     seed=args['z']
@@ -25,4 +25,4 @@ def generate_(model , args):
 
 
 if __name__ == '__main__':
-    runway.run(port=8090)
+    runway.run()
