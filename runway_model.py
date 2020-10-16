@@ -16,6 +16,7 @@ def setup(opts):
 
 @runway.command(name='generate',inputs=input,outputs={ 'image': image })
 def generate_(model , args):
+    print("ffdsdsfdsfsdfdsfsdfdsfsdfwfwww")
     network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
     seed=args['z']
     trunc=0.5
