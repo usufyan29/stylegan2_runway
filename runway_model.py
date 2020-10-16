@@ -16,7 +16,7 @@ def setup(opts):
 
 @runway.command(name='generate',inputs=input,outputs={ 'image': image })
 def generate_(model , args):
-    _run_cmd('nvcc --version')
+    _run_cmd('ls /usr/local/cuda')
     network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
     seed=args['z']
     trunc=0.5
@@ -29,7 +29,7 @@ def _run_cmd(cmd):
         output = pipe.read()
         status = pipe.close()
     if status is not None:
-        raise RuntimeError('NVCC returned an error. See below for full command line and output log:\n\n%s\n\n%s' % (cmd, output))
+        raise RuntimeError('See below for full command line and output log:\n\n%s\n\n%s' % (cmd, output))
 
 
 if __name__ == '__main__':
