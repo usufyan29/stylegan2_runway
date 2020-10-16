@@ -16,13 +16,20 @@ def setup(opts):
 
 @runway.command(name='generate',inputs=input,outputs={ 'image': image })
 def generate_(model , args):
-    print("ffdsdsfdsfsdfdsfsdfdsfsdfwfwww")
+    _run_cmd('nvcc --version')
     network_pkl='https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada/pretrained/ffhq.pkl'
     seed=args['z']
     trunc=0.5
     output_image =  generate_images(network_pkl, seed, trunc)
     return {'image': output_image}
 
+
+def _run_cmd(cmd):
+    with os.popen(cmd) as pipe:
+        output = pipe.read()
+        status = pipe.close()
+    if status is not None:
+        raise RuntimeError('NVCC returned an error. See below for full command line and output log:\n\n%s\n\n%s' % (cmd, output))
 
 
 if __name__ == '__main__':
